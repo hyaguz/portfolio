@@ -5,23 +5,87 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Portfólio - Carros</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; text-align: center; margin: 0; padding: 0; }
-    header { background: #0078ff; color: white; padding: 30px 0; }
-    section { padding: 20px; max-width: 800px; margin: auto; }
-    .projeto { background: white; margin: 15px 0; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    img { width: 100%; height: auto; border-radius: 10px; }
-    a { color: #0078ff; text-decoration: none; font-weight: bold; }
-    footer { margin: 20px 0; font-size: 14px; color: #555; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      background: url('23a2497e-00cf-4edd-b2d2-25c532c71298.png') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Instagram neon button */
+    .instagram-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #8e2de2, #4a00e0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 20px #8e2de2;
+    }
+    .instagram-btn img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Menu de três riscos */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .menu-toggle div {
+      height: 4px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .menu-options {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .menu-options a {
+      background: rgba(0,0,0,0.7);
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    section { padding: 20px; max-width: 800px; margin: 100px auto 50px; }
+    .projeto { background: rgba(255,255,255,0.1); margin: 15px 0; padding: 15px; border-radius: 10px; }
+    .projeto img { width: 100%; border-radius: 10px; }
+
   </style>
 </head>
 <body>
-  <header>
-    <h1>Meu Portfólio de Carros</h1>
-    <p>Veja meus carros favoritos e siga meu Instagram!</p>
-  </header>
+
+  <header></header>
 
   <section>
-    <a href="https://instagram.com/hyaguz" target="_blank">@hyaguz</a>
     <div class="projeto">
       <h2>Carro 1</h2>
       <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d" alt="Carro 1">
@@ -32,8 +96,31 @@
     </div>
   </section>
 
-  <footer>
-    <p>Portfólio criado para teste — Instagram @hyaguz</p>
-  </footer>
+  <!-- Instagram neon button -->
+  <a href="https://instagram.com/hyaguzzz" target="_blank" class="instagram-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+  </a>
+
+  <!-- Menu toggle -->
+  <div class="menu-toggle" id="menuToggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="menu-options" id="menuOptions">
+    <a href="mailto:hyago@example.com">Email</a>
+    <a href="#">Redes Sociais</a>
+    <a href="#">Loja</a>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOptions = document.getElementById('menuOptions');
+
+    menuToggle.addEventListener('click', () => {
+      menuOptions.style.display = menuOptions.style.display === 'flex' ? 'none' : 'flex';
+    });
+  </script>
+
 </body>
 </html>
