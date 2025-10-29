@@ -1,27 +1,34 @@
-<!doctype html> 
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Portfólio - Carros</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* Reset básico */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
       color: #fff;
-      background: url('23a2497e-00cf-4edd-b2d2-25c532c71298.png') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a); /* Fundo preto moderno */
       overflow-x: hidden;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px;
+      position: relative;
+      z-index: 10;
     }
 
-    /* Instagram neon button */
+    /* Botão Instagram neon */
     .instagram-btn {
       position: fixed;
       bottom: 20px;
@@ -35,10 +42,18 @@
       align-items: center;
       cursor: pointer;
       box-shadow: 0 0 20px #8e2de2;
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 10;
     }
+
     .instagram-btn img {
       width: 30px;
       height: 30px;
+    }
+
+    .instagram-btn:hover {
+      box-shadow: 0 0 30px #8e2de2, 0 0 50px #4a00e0;
+      transform: scale(1.1);
     }
 
     /* Menu de três riscos */
@@ -52,32 +67,103 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      z-index: 11;
     }
+
     .menu-toggle div {
       height: 4px;
       background: #fff;
       border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
     }
 
+    /* Menu options */
     .menu-options {
       position: fixed;
       top: 60px;
       right: 20px;
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
     }
+
+    .menu-options.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     .menu-options a {
-      background: rgba(0,0,0,0.7);
+      background: rgba(255,255,255,0.1);
       padding: 10px 20px;
       color: #fff;
       text-decoration: none;
       border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
     }
 
-    section { padding: 20px; max-width: 800px; margin: 100px auto 50px; }
-    .projeto { background: rgba(255,255,255,0.1); margin: 15px 0; padding: 15px; border-radius: 10px; }
-    .projeto img { width: 100%; border-radius: 10px; }
+    .menu-options a:hover {
+      background: rgba(142, 45, 226, 0.8);
+      transform: translateX(-5px);
+    }
+
+    /* Seções de projetos */
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: 100px auto 50px;
+    }
+
+    .projeto {
+      background: rgba(255,255,255,0.05);
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .projeto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    .projeto img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .projeto img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responsividade */
+    @media(max-width: 600px) {
+      section {
+        margin: 80px 10px 30px;
+      }
+
+      .instagram-btn {
+        width: 50px;
+        height: 50px;
+      }
+
+      .instagram-btn img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .menu-toggle {
+        width: 35px;
+        height: 25px;
+      }
+    }
 
   </style>
 </head>
@@ -118,7 +204,7 @@
     const menuOptions = document.getElementById('menuOptions');
 
     menuToggle.addEventListener('click', () => {
-      menuOptions.style.display = menuOptions.style.display === 'flex' ? 'none' : 'flex';
+      menuOptions.classList.toggle('show');
     });
   </script>
 
