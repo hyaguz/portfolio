@@ -5,209 +5,208 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Portfólio - Carros</title>
   <style>
-    :root{
-      --accent:#0078ff;
-      --bg:#f5f7fb;
-      --card:#ffffff;
-      --maxw:1100px;
-    }
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#111}
-    .wrap{max-width:var(--maxw); margin:0 auto; padding:20px}
-
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#00b4ff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-    h1{font-size:18px;margin:0}
-    p.lead{margin:0;color:#444;font-size:14px}
-
-    .instagram{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--card);box-shadow:0 3px 8px rgba(2,6,23,0.06);text-decoration:none;color:inherit}
-    .instagram svg{width:18px;height:18px}
-
-    /* gallery */
-    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:20px}
-    .card{background:var(--card);padding:6px;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(2,6,23,0.06);cursor:pointer}
-    .card img{width:100%;height:160px;object-fit:cover;display:block;transition:transform .3s}
-    .card:active img{transform:scale(.98)}
-    .card h3{font-size:14px;margin:8px 6px 0}
-    .card p{font-size:12px;margin:4px 6px 10px;color:#666}
-
-    /* lightbox */
-    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:999}
-    .lightbox.open{display:flex}
-    .lightbox .stage{position:relative;max-width:95%;max-height:90%;display:flex;align-items:center;justify-content:center}
-    .lightbox img{max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 10px 40px rgba(2,6,23,0.6)}
-    .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 18px rgba(2,6,23,0.12)}
-    .nav.left{left:-60px}
-    .nav.right{right:-60px}
-    .close{position:absolute;top:-56px;right:0;background:rgba(255,255,255,0.95);border-radius:10px;padding:8px;cursor:pointer}
-    .caption{position:absolute;left:0;right:0;bottom:-56px;color:white;text-align:center;font-weight:600}
-
-    /* responsive tweaks */
-    @media (max-width:640px){
-      .card img{height:140px}
-      .nav.left{left:8px}
-      .nav.right{right:8px}
-      .nav{width:40px;height:40px}
-      .logo{width:48px;height:48px}
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    footer{margin:28px 0 8px;color:#666;font-size:13px;text-align:center}
+    body {
+      font-family: Arial, sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #0f0f0f, #1a1a1a); /* Fundo preto moderno */
+      overflow-x: hidden;
+    }
 
-    /* small helper for focus outlines */
-    .instagram:focus,.nav:focus,.close:focus{outline:3px solid rgba(0,120,255,0.12)}
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Botão Instagram neon */
+    .instagram-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #8e2de2, #4a00e0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 20px #8e2de2;
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 10;
+    }
+
+    .instagram-btn img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .instagram-btn:hover {
+      box-shadow: 0 0 30px #8e2de2, 0 0 50px #4a00e0;
+      transform: scale(1.1);
+    }
+
+    /* Menu de três riscos */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 11;
+    }
+
+    .menu-toggle div {
+      height: 4px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* Menu options */
+    .menu-options {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+
+    .menu-options.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-options a {
+      background: rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .menu-options a:hover {
+      background: rgba(142, 45, 226, 0.8);
+      transform: translateX(-5px);
+    }
+
+    /* Seções de projetos */
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: 100px auto 50px;
+    }
+
+    .projeto {
+      background: rgba(255,255,255,0.05);
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .projeto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    .projeto img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .projeto img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responsividade */
+    @media(max-width: 600px) {
+      section {
+        margin: 80px 10px 30px;
+      }
+
+      .instagram-btn {
+        width: 50px;
+        height: 50px;
+      }
+
+      .instagram-btn img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .menu-toggle {
+        width: 35px;
+        height: 25px;
+      }
+    }
+
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">CP</div>
-        <div>
-          <h1>Portfólio — Carros (Teste)</h1>
-          <p class="lead">Clique ou deslize nas imagens para ver em tela cheia</p>
-        </div>
-      </div>
 
-      <!-- Troque INSTAGRAM_USERNAME pelo seu usuário -->
-      <a class="instagram" href="https://instagram.com/INSTAGRAM_USERNAME" target="_blank" rel="noopener noreferrer">
-        <!-- Instagram SVG -->
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><path d="M12 7a5 5 0 100 10 5 5 0 000-10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <span>@INSTAGRAM_USERNAME</span>
-      </a>
-    </header>
+  <header></header>
 
-    <main>
-      <section class="gallery" id="gallery">
-        <!-- Substitua as URLs abaixo pelas suas imagens de carros -->
-        <figure class="card" data-index="0" tabindex="0">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Carro 1">
-          <h3>Carro 1</h3>
-          <p>Descrição breve do carro.</p>
-        </figure>
-
-        <figure class="card" data-index="1" tabindex="0">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1511918984145-48de785d4c4c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Carro 2">
-          <h3>Carro 2</h3>
-          <p>Descrição breve do carro.</p>
-        </figure>
-
-        <figure class="card" data-index="2" tabindex="0">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Carro 3">
-          <h3>Carro 3</h3>
-          <p>Descrição breve do carro.</p>
-        </figure>
-
-        <figure class="card" data-index="3" tabindex="0">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Carro 4">
-          <h3>Carro 4</h3>
-          <p>Descrição breve do carro.</p>
-        </figure>
-
-        <figure class="card" data-index="4" tabindex="0">
-          <img loading="lazy" src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Carro 5">
-          <h3>Carro 5</h3>
-          <p>Descrição breve do carro.</p>
-        </figure>
-      </section>
-    </main>
-
-    <!-- lightbox -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-      <div class="stage" role="dialog" aria-modal="true">
-        <button class="nav left" id="prevBtn" aria-label="Anterior">&#10094;</button>
-        <img id="lightImg" src="" alt="">
-        <button class="nav right" id="nextBtn" aria-label="Próximo">&#10095;</button>
-        <button class="close" id="closeBtn" aria-label="Fechar">Fechar ✕</button>
-        <div class="caption" id="caption"></div>
-      </div>
+  <section>
+    <div class="projeto">
+      <h2>Carro 1</h2>
+      <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d" alt="Carro 1">
     </div>
+    <div class="projeto">
+      <h2>Carro 2</h2>
+      <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4c" alt="Carro 2">
+    </div>
+  </section>
 
-    <footer>
-      <small>Modelo de portfólio para teste — substitua as imagens e o usuário do Instagram.</small>
-    </footer>
+  <!-- Instagram neon button -->
+  <a href="https://instagram.com/hyaguzzz" target="_blank" class="instagram-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+  </a>
+
+  <!-- Menu toggle -->
+  <div class="menu-toggle" id="menuToggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="menu-options" id="menuOptions">
+    <a href="mailto:hyago@example.com">Email</a>
+    <a href="#">Redes Sociais</a>
+    <a href="#">Loja</a>
   </div>
 
   <script>
-    (function(){
-      const cards = Array.from(document.querySelectorAll('.card'));
-      const lightbox = document.getElementById('lightbox');
-      const lightImg = document.getElementById('lightImg');
-      const caption = document.getElementById('caption');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      const closeBtn = document.getElementById('closeBtn');
-      let current = 0;
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOptions = document.getElementById('menuOptions');
 
-      function open(idx){
-        const card = cards[idx];
-        const img = card.querySelector('img');
-        lightImg.src = img.src;
-        lightImg.alt = img.alt || ('Imagem '+(idx+1));
-        caption.textContent = card.querySelector('h3')?.textContent || '';
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden','false');
-        current = idx;
-      }
-      function close(){
-        lightbox.classList.remove('open');
-        lightbox.setAttribute('aria-hidden','true');
-        lightImg.src = '';
-      }
-      function next(){ open((current+1) % cards.length); }
-      function prev(){ open((current-1 + cards.length) % cards.length); }
-
-      // click/tap to open
-      cards.forEach((c,i)=>{
-        c.addEventListener('click',()=>open(i));
-        c.addEventListener('keydown',(e)=>{ if(e.key === 'Enter' || e.key === ' ') open(i); });
-      });
-
-      // buttons
-      closeBtn.addEventListener('click',close);
-      nextBtn.addEventListener('click',(e)=>{ e.stopPropagation(); next(); });
-      prevBtn.addEventListener('click',(e)=>{ e.stopPropagation(); prev(); });
-
-      // keyboard
-      document.addEventListener('keydown',(e)=>{
-        if(lightbox.classList.contains('open')){
-          if(e.key === 'ArrowRight') next();
-          if(e.key === 'ArrowLeft') prev();
-          if(e.key === 'Escape') close();
-        }
-      });
-
-      // swipe on touch devices (basic)
-      let startX = 0;
-      let isTouching = false;
-      lightbox.addEventListener('touchstart', (e)=>{
-        if(!e.touches || e.touches.length>1) return;
-        startX = e.touches[0].clientX; isTouching = true;
-      }, {passive:true});
-
-      lightbox.addEventListener('touchmove', (e)=>{
-        if(!isTouching) return;
-        // optional: could implement drag feedback
-      }, {passive:true});
-
-      lightbox.addEventListener('touchend', (e)=>{
-        if(!isTouching) return; isTouching = false;
-        const endX = (e.changedTouches && e.changedTouches[0])? e.changedTouches[0].clientX : startX;
-        const dx = endX - startX;
-        if(Math.abs(dx) > 40){ if(dx < 0) next(); else prev(); }
-      });
-
-      // close when clicking outside the image
-      lightbox.addEventListener('click',(e)=>{ if(e.target === lightbox) close(); });
-
-      // accessibility: focus trapping simple
-      // move focus to close when opened
-      const observer = new MutationObserver(()=>{
-        if(lightbox.classList.contains('open')) closeBtn.focus();
-      });
-      observer.observe(lightbox,{attributes:true,attributeFilter:['class']});
-
-    })();
+    menuToggle.addEventListener('click', () => {
+      menuOptions.classList.toggle('show');
+    });
   </script>
+
 </body>
 </html>
