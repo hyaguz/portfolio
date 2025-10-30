@@ -1,212 +1,88 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Portfólio - Carros</title>
-  <style>
-    /* Reset básico */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      color: #fff;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a); /* Fundo preto moderno */
-      overflow-x: hidden;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      position: relative;
-      z-index: 10;
-    }
-
-    /* Botão Instagram neon */
-    .instagram-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #8e2de2, #4a00e0);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 0 20px #8e2de2;
-      transition: transform 0.3s, box-shadow 0.3s;
-      z-index: 10;
-    }
-
-    .instagram-btn img {
-      width: 30px;
-      height: 30px;
-    }
-
-    .instagram-btn:hover {
-      box-shadow: 0 0 30px #8e2de2, 0 0 50px #4a00e0;
-      transform: scale(1.1);
-    }
-
-    /* Menu de três riscos */
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 30px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 11;
-    }
-
-    .menu-toggle div {
-      height: 4px;
-      background: #fff;
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-
-    /* Menu options */
-    .menu-options {
-      position: fixed;
-      top: 60px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 10;
-    }
-
-    .menu-options.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .menu-options a {
-      background: rgba(255,255,255,0.1);
-      padding: 10px 20px;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .menu-options a:hover {
-      background: rgba(142, 45, 226, 0.8);
-      transform: translateX(-5px);
-    }
-
-    /* Seções de projetos */
-    section {
-      padding: 20px;
-      max-width: 900px;
-      margin: 100px auto 50px;
-    }
-
-    .projeto {
-      background: rgba(255,255,255,0.05);
-      margin: 15px 0;
-      padding: 15px;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .projeto:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    }
-
-    .projeto img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
-
-    .projeto img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Responsividade */
-    @media(max-width: 600px) {
-      section {
-        margin: 80px 10px 30px;
-      }
-
-      .instagram-btn {
-        width: 50px;
-        height: 50px;
-      }
-
-      .instagram-btn img {
-        width: 25px;
-        height: 25px;
-      }
-
-      .menu-toggle {
-        width: 35px;
-        height: 25px;
-      }
-    }
-
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+  <header>
+    <h1>🚗 Portfólio de Carros</h1>
+    <nav>
+      <a href="#adry">Adry</a>
+      <a href="#carros">Carros</a>
+      <a href="#games">Games</a>
+    </nav>
+  </header>
 
-  <header></header>
+  <main>
+    <section id="adry" class="section blank">
+      <h2>Adry</h2>
+      <p class="placeholder">Seção reservada — conteúdo em breve.</p>
+    </section>
 
-  <section>
-    <div class="projeto">
-      <h2>Carro 1</h2>
-      <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d" alt="Carro 1">
-    </div>
-    <div class="projeto">
-      <h2>Carro 2</h2>
-      <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4c" alt="Carro 2">
-    </div>
-  </section>
+    <section id="carros" class="section">
+      <h2>Carros de Luxo</h2>
+      <div class="grid">
+        <!-- Ferrari LaFerrari (Ultra) -->
+        <article class="projeto" data-title="Ferrari LaFerrari" data-desc="Híbrido V12, desempenho extremo e design icônico da Ferrari. Motor potente, dinâmica de pista e acabamento artesanal.">
+          <img src="https://source.unsplash.com/1600x900/?ferrari,supercar" alt="Ferrari LaFerrari">
+          <h3>Ferrari LaFerrari</h3>
+        </article>
+
+        <!-- Lamborghini Aventador (Ultra) -->
+        <article class="projeto" data-title="Lamborghini Aventador" data-desc="Motor V12, portas em tesoura e design agressivo — símbolo da Lamborghini. Alta performance e presença marcante.">
+          <img src="https://source.unsplash.com/1600x900/?lamborghini,aventador" alt="Lamborghini Aventador">
+          <h3>Lamborghini Aventador</h3>
+        </article>
+
+        <!-- Rolls-Royce Phantom (Ultra) -->
+        <article class="projeto" data-title="Rolls-Royce Phantom" data-desc="Luxo absoluto: acabamento artesanal, isolamento acústico superior e conforto incomparável para passageiros.">
+          <img src="https://source.unsplash.com/1600x900/?rolls-royce,phantom" alt="Rolls-Royce Phantom">
+          <h3>Rolls-Royce Phantom</h3>
+        </article>
+
+        <!-- Porsche 911 Turbo S (Otimizada) -->
+        <article class="projeto" data-title="Porsche 911 Turbo S" data-desc="Clássico moderno: desempenho excepcional, engenharia alemã e um comportamento dinâmico refinado.">
+          <img src="https://source.unsplash.com/800x600/?porsche,911" alt="Porsche 911 Turbo S">
+          <h3>Porsche 911 Turbo S</h3>
+        </article>
+
+        <!-- McLaren 720S (Otimizada) -->
+        <article class="projeto" data-title="McLaren 720S" data-desc="Aerodinâmica avançada, potência e leveza: um supercarro britânico focado em desempenho e tecnologia.">
+          <img src="https://source.unsplash.com/800x600/?mclaren,720s" alt="McLaren 720S">
+          <h3>McLaren 720S</h3>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="games" class="section blank">
+      <h2>Games</h2>
+      <p class="placeholder">Seção reservada — conteúdo em breve.</p>
+    </section>
+  </main>
 
   <!-- Instagram neon button -->
-  <a href="https://instagram.com/hyaguzzz" target="_blank" class="instagram-btn">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+  <a href="https://instagram.com/hyaguzzz" target="_blank" class="instagram-btn" aria-label="Instagram">
+    <img src="assets/instagram.svg" alt="Instagram">
   </a>
 
-  <!-- Menu toggle -->
-  <div class="menu-toggle" id="menuToggle">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <div class="menu-options" id="menuOptions">
-    <a href="mailto:hyago@example.com">Email</a>
-    <a href="#">Redes Sociais</a>
-    <a href="#">Loja</a>
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button id="modalClose" class="modal-close" aria-label="Fechar">×</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+    </div>
   </div>
 
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const menuOptions = document.getElementById('menuOptions');
+  <footer>
+    <p>© 2025 Hyago — Todos os direitos reservados.</p>
+  </footer>
 
-    menuToggle.addEventListener('click', () => {
-      menuOptions.classList.toggle('show');
-    });
-  </script>
-
+  <script src="assets/script.js"></script>
 </body>
 </html>
